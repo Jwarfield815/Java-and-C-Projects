@@ -1,6 +1,8 @@
-// Name: Jonathan Warfield
-// Date: 01/25/2019
-// Description: Enter a binary number, and this program converts it to decimal
+/*
+    Name: Jonathan Warfield
+    Date: 01.25.2019
+    Description: Enter a binary number, and this program converts it to decimal
+*/
 
 import java.util.Scanner;
 

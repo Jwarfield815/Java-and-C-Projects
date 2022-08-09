@@ -9,114 +9,114 @@ public class DrawRandomShapesController
 {
     private static final SecureRandom randomNumbers = new SecureRandom();
     @FXML private Canvas canvas;
-    
+
     @FXML
     void drawLinesButtonPressed(ActionEvent event)
     {
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        
+
         MyLine[] lines = new MyLine[1000];
-        
+
         final int width = (int) canvas.getWidth();
         final int height = (int) canvas.getHeight();
-        
-        
+
+
         for (int count = 0; count < lines.length; count++)
         {
             int x1 = randomNumbers.nextInt(width);
             int y1 = randomNumbers.nextInt(height);
             int x2 = randomNumbers.nextInt(width);
             int y2 = randomNumbers.nextInt(height);
-            
+
             Color color = Color.rgb(randomNumbers.nextInt(256),
-            randomNumbers.nextInt(256), randomNumbers.nextInt(256));
-            
+                    randomNumbers.nextInt(256), randomNumbers.nextInt(256));
+
             lines[count] = new MyLine (x1, y1, x2, y2, color);
         }
-        
+
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        
+
         for (MyLine line : lines)
         {
             line.draw(gc);
         }
-        
+
     }
-    
+
     @FXML
     void drawOvalsButtonPressed(ActionEvent event)
     {
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        
+
         MyOval[] ovals = new MyOval[1000];
-        
+
         final int width = (int) canvas.getWidth();
         final int height = (int) canvas.getHeight();
-        
+
         for (int count = 0; count < ovals.length; count++)
         {
             int x1 = randomNumbers.nextInt(width);
             int y1 = randomNumbers.nextInt(height);
             int x2 = randomNumbers.nextInt(width);
             int y2 = randomNumbers.nextInt(height);
-            
+
             Color color = Color.rgb(randomNumbers.nextInt(256),
-            randomNumbers.nextInt(256), randomNumbers.nextInt(256));
-            
-            ovals[count] = new MyOval (x1, y1, x2, y2, color, 
-            randomNumbers.nextBoolean());
+                    randomNumbers.nextInt(256), randomNumbers.nextInt(256));
+
+            ovals[count] = new MyOval (x1, y1, x2, y2, color,
+                    randomNumbers.nextBoolean());
         }
-        
+
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        
+
         for (MyOval oval : ovals)
         {
             oval.draw(gc);
         }
-        
+
     }
     @FXML
     void drawRectanglesButtonPressed(ActionEvent event)
     {
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        
+
         MyRectangle[] rectangles = new MyRectangle[1000];
-        
+
         final int width = (int) canvas.getWidth();
         final int height = (int) canvas.getHeight();
-        
+
         for (int count = 0; count < rectangles.length; count++)
         {
             int x1 = randomNumbers.nextInt(width);
             int y1 = randomNumbers.nextInt(height);
             int x2 = randomNumbers.nextInt(width);
             int y2 = randomNumbers.nextInt(height);
-            
+
             Color color = Color.rgb(randomNumbers.nextInt(256),
-            randomNumbers.nextInt(256), randomNumbers.nextInt(256));
-            
-            rectangles[count] = new MyRectangle(x1, y1, x2, y2, color, 
-            randomNumbers.nextBoolean());
+                    randomNumbers.nextInt(256), randomNumbers.nextInt(256));
+
+            rectangles[count] = new MyRectangle(x1, y1, x2, y2, color,
+                    randomNumbers.nextBoolean());
         }
-        
+
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        
+
         for (MyRectangle rectangle : rectangles)
         {
             rectangle.draw(gc);
         }
     }
-/*    @FXML
+    @FXML
     void drawArcsButtonPressed(ActionEvent event)
     {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         
-        MyArc[] Arcs = new MyArc[100];
+        MyArc[] arcs = new MyArc[100];
         
         final int width = (int) canvas.getWidth();
         final int height = (int) canvas.getHeight();
         
-        for (int count = 0; count < rectangles.length; count++)
+        for (int count = 0; count < arcs.length; count++)
         {
             int x1 = randomNumbers.nextInt(width);
             int y1 = randomNumbers.nextInt(height);
@@ -126,15 +126,15 @@ public class DrawRandomShapesController
             Color color = Color.rgb(randomNumbers.nextInt(256),
             randomNumbers.nextInt(256), randomNumbers.nextInt(256));
             
-            arcs[count] = new MyArc(x1, y1, x2, y2, color, 
+            arcs[count] = new MyArc(x1, y1, x2, y2, color,
             randomNumbers.nextBoolean());
         }
         
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         
-        for (MyArc Arc : Arcs)
+        for (MyArc Arc : arcs)
         {
             Arc.draw(gc);
         }
-    }*/
+    }
 }
