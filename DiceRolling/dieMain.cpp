@@ -1,11 +1,11 @@
 /*
-	Name: Urmomanym
+	Name: Jonathan Warfield
 	Date: 11.5.18
 	Description: The user program that uses class die
 */
 
 #include <iostream>
-#include "die.h" //class file inclusion
+#include "die.h" // class file inclusion
 
 using namespace std;
 
@@ -14,7 +14,7 @@ const int NUMOFDIE = 10;
 int main()
 {
 	int hold;
-	die diceList[NUMOFDIE];//class array
+	die diceList[NUMOFDIE]; // class array
 	int numOfDiceRolled;
 	int sum;
 	int desiredSum;
@@ -36,20 +36,17 @@ int main()
 	cin >> desiredSum;
 	cout << endl;
 
-	while (desiredSum < minDiceSum || desiredSum > maxDiceSum)//confirms that their choice was valid
-	{
+	while (desiredSum < minDiceSum || desiredSum > maxDiceSum) /* confirms that their choice was valid */ {
 		cout << "The desired sum should be between " << minDiceSum << " and " << maxDiceSum;
 		cout << "Reenter the desired sum of the dice: ";
 		cin >> desiredSum;
 		cout << endl;
 	}
 
-	for (int rollCount = 1; rollCount <= numOfDiceRolled; rollCount++)//goes through each die
-	{
+	for (int rollCount = 1; rollCount <= numOfDiceRolled; rollCount++) /* goes through each die */ {
 		sum = 0;
 
-		for (int dieCount = 0; dieCount < NUMOFDIE; dieCount++)//rolls each die the right amount
-		{
+		for (int dieCount = 0; dieCount < NUMOFDIE; dieCount++) /* rolls each die the right amount */ {
 			diceList[dieCount].roll();
 			sum = sum + diceList[dieCount].getNum();
 		}
