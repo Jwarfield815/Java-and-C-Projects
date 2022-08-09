@@ -17,9 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class DrawFrame extends JFrame
-    implements ItemListener, ActionListener
-{
+public class DrawFrame extends JFrame implements ItemListener, ActionListener {
     
     private String shapes[] = {"Line", "Oval", "Rectangle"};
     
@@ -41,12 +39,10 @@ public class DrawFrame extends JFrame
     private Color color1;
     private Color color2;
     
-    public DrawFrame()
-    {
-        super("Java 2D Drawings");
+    public DrawFrame() {
+        super("Java 2D Drawings"); // title
         
         JPanel topPanel = new JPanel(new GridLayout(2, 1));
-        
         topPanel.add(createStandardPanel());
         topPanel.add(createJava2dPanel());
         add(topPanel, BorderLayout.NORTH);
@@ -63,8 +59,7 @@ public class DrawFrame extends JFrame
         setDrawingStroke();
     }
     
-    private JPanel createStandardPanel()
-    {
+    private JPanel createStandardPanel() { // undo, clear, shape choices, and filled option
         JPanel standardOptions = new JPanel(new FlowLayout());
         
         undoButton = new JButton("Undo");
@@ -87,11 +82,10 @@ public class DrawFrame extends JFrame
         return standardOptions;
     }
     
-    private JPanel createJava2dPanel()
-    {
+    private JPanel createJava2dPanel() { // color options, line width, and dash length
         JPanel java2dOptions = new JPanel(new FlowLayout());
         
-        gradientCheckBox = new JCheckBox("Use the mf gradient");
+        gradientCheckBox = new JCheckBox("Use gradient");
         gradientCheckBox.addItemListener(this);
         java2dOptions.add(gradientCheckBox);
         
@@ -122,8 +116,7 @@ public class DrawFrame extends JFrame
         return java2dOptions;
     }
     
-    public void itemStateChanged(ItemEvent e)
-    {
+    public void itemStateChanged(ItemEvent e) {
         if (e.getSource() == shapeChoices)
             drawPanel.setShapeType(shapeChoices.getSelectedIndex());
         else if (e.getSource() == filledCheckBox)
@@ -134,14 +127,12 @@ public class DrawFrame extends JFrame
             setDrawingStroke();
     }
     
-    public void actionPerformed(ActionEvent e)
-    {
-        if(e.getSource() == undoButton)
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == undoButton) // undo button functionality
             drawPanel.clearLastShape();
-        else if(e.getSource() == clearButton)
+        else if(e.getSource() == clearButton) // clear button functionality
             drawPanel.clearDrawing();
-        else if(e.getSource() == color1Button)
-        {
+        else if(e.getSource() == color1Button) { // color 1 change dialogue box functionality
             Color temp = JColorChooser.showDialog(this, "Chose a color", color1);
             
             if (temp != null)
@@ -149,8 +140,7 @@ public class DrawFrame extends JFrame
                 
             setDrawingPaint();
         }
-        else if (e.getSource() == color2Button)
-        {
+        else if (e.getSource() == color2Button) { // color 2 change dialogue box functionality
             Color temp =
                 JColorChooser.showDialog(this, "Choose a color", color2);
                 
@@ -159,14 +149,13 @@ public class DrawFrame extends JFrame
                 
             setDrawingPaint();
         }
-        else if (e.getSource() == lineWidthField)
+        else if (e.getSource() == lineWidthField) // line width functionality
             setDrawingStroke();
-        else if (e.getSource() == dashLengthField)
+        else if (e.getSource() == dashLengthField) // dash length functionality
             setDrawingStroke();
     }
     
-    private void setDrawingPaint()
-    {
+    private void setDrawingPaint() {
         if (gradientCheckBox.isSelected())
             drawPanel.setDrawingPaint(
                 new GradientPaint(0, 0, color1, 50, 50, color2, true));
@@ -174,12 +163,10 @@ public class DrawFrame extends JFrame
             drawPanel.setDrawingPaint(color1);
     }
     
-    private void setDrawingStroke()
-    {
+    private void setDrawingStroke() {
         float width = Float.parseFloat(lineWidthField.getText());
         
-        if (dashedCheckBox.isSelected())
-        {
+        if (dashedCheckBox.isSelected()) {
             float dashes[] =
                 { Float.parseFloat(dashLengthField.getText()) };
                 

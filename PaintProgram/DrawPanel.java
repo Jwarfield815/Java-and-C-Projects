@@ -12,8 +12,7 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class DrawPanel extends JPanel
-{
+public class DrawPanel extends JPanel {
    private MyShape shapes[]; // array containing all the shapes
    private int shapeCount; // total number of shapes
 
@@ -26,8 +25,7 @@ public class DrawPanel extends JPanel
    private JLabel statusLabel; // label displaying mouse coordinates
    
    // constructor
-   public DrawPanel(JLabel status)
-   {
+   public DrawPanel(JLabel status) {
       shapes = new MyShape[100]; // create the array
       shapeCount = 0; // initially we have no shapes
       
@@ -49,8 +47,7 @@ public class DrawPanel extends JPanel
    }
 
    // draw shapes using polymorphism
-   public void paintComponent(Graphics g)
-   {
+   public void paintComponent(Graphics g) {
       super.paintComponent(g);
       
       Graphics2D g2d = (Graphics2D) g;
@@ -63,53 +60,43 @@ public class DrawPanel extends JPanel
    }
 
    // sets the type of shape to draw
-   public void setShapeType(int shapeType)
-   {
+   public void setShapeType(int shapeType) {
       if (shapeType < 0 || shapeType > 2)
          shapeType = 0;
-      
       this.shapeType = shapeType;
    } 
 
    // sets the drawing paint
-   public void setDrawingPaint(Paint paint)
-   {
+   public void setDrawingPaint(Paint paint) {
       currentPaint = paint;
-   } // end method setDrawingPaint
+   }
    
    // sets the current drawing stroke
-   public void setDrawingStroke(Stroke stroke)
-   {
+   public void setDrawingStroke(Stroke stroke) {
       currentStroke = stroke;
    } 
 
    // clears the last shape drawn
-   public void clearLastShape()
-   {
-      if (shapeCount > 0)
-      {
+   public void clearLastShape() {
+      if (shapeCount > 0) {
          shapeCount--;
          repaint();
       } 
    }
 
    // clears all drawings on this panel
-   public void clearDrawing()
-   {
+   public void clearDrawing() {
       shapeCount = 0;
       repaint();
    } 
 
    // sets whether to draw a filled shape
-   public void setFilledShape(boolean isFilled)
-   {
+   public void setFilledShape(boolean isFilled) {
       filledShape = isFilled;
    } 
 
    // handles mouse events for this JPanel
-   private class MouseHandler extends MouseAdapter
-      implements MouseMotionListener
-   {
+   private class MouseHandler extends MouseAdapter implements MouseMotionListener {
       // creates and sets the initial position for the new shape
       public void mousePressed(MouseEvent e)
       {
@@ -117,8 +104,7 @@ public class DrawPanel extends JPanel
             return;
 
          // create the appropriate shape based on shapeType
-         switch (shapeType)
-         {
+         switch (shapeType) {
             case 0:
                currentShape = new MyLine(e.getX(), e.getY(), e.getX(),
                   e.getY(), currentPaint, currentStroke);      
@@ -135,8 +121,7 @@ public class DrawPanel extends JPanel
       } 
 
       // fixes the current shape onto the panel
-      public void mouseReleased(MouseEvent e)
-      {
+      public void mouseReleased(MouseEvent e) {
          if (currentShape == null)
             return;
          
@@ -145,8 +130,7 @@ public class DrawPanel extends JPanel
          currentShape.setY2(e.getY());
          
          // set the shape only if there is room in the array
-         if (shapeCount < shapes.length)
-         {
+         if (shapeCount < shapes.length) {
             shapes[shapeCount] = currentShape;
             shapeCount++;
          }
@@ -156,10 +140,8 @@ public class DrawPanel extends JPanel
       } 
 
       // update the shape to the current mouse position while dragging
-      public void mouseDragged(MouseEvent e)
-      {
-         if (currentShape != null)
-         {
+      public void mouseDragged(MouseEvent e) {
+         if (currentShape != null) {
             currentShape.setX2(e.getX());
             currentShape.setY2(e.getY());
             repaint();
@@ -169,8 +151,7 @@ public class DrawPanel extends JPanel
       } 
 
       // update the status bar to show the current mouse coordinates
-      public void mouseMoved(MouseEvent e)
-      {
+      public void mouseMoved(MouseEvent e) {
          statusLabel.setText(
             String.format("(%d,%d)", e.getX(), e.getY()));
       } 
