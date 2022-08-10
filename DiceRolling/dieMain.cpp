@@ -11,8 +11,7 @@ using namespace std;
 
 const int NUMOFDIE = 10;
 
-int main()
-{
+int main() {
 	int hold;
 	die diceList[NUMOFDIE]; // class array
 	int numOfDiceRolled;

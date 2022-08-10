@@ -5,14 +5,12 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class DrawRandomShapesController
-{
+public class DrawRandomShapesController {
     private static final SecureRandom randomNumbers = new SecureRandom();
     @FXML private Canvas canvas;
 
     @FXML
-    void drawLinesButtonPressed(ActionEvent event)
-    {
+    void drawLinesButtonPressed(ActionEvent event) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
         MyLine[] lines = new MyLine[1000];
@@ -21,8 +19,7 @@ public class DrawRandomShapesController
         final int height = (int) canvas.getHeight();
 
 
-        for (int count = 0; count < lines.length; count++)
-        {
+        for (int count = 0; count < lines.length; count++) {
             int x1 = randomNumbers.nextInt(width);
             int y1 = randomNumbers.nextInt(height);
             int x2 = randomNumbers.nextInt(width);
@@ -36,16 +33,14 @@ public class DrawRandomShapesController
 
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
-        for (MyLine line : lines)
-        {
+        for (MyLine line : lines) {
             line.draw(gc);
         }
 
     }
 
     @FXML
-    void drawOvalsButtonPressed(ActionEvent event)
-    {
+    void drawOvalsButtonPressed(ActionEvent event) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
         MyOval[] ovals = new MyOval[1000];
@@ -53,8 +48,7 @@ public class DrawRandomShapesController
         final int width = (int) canvas.getWidth();
         final int height = (int) canvas.getHeight();
 
-        for (int count = 0; count < ovals.length; count++)
-        {
+        for (int count = 0; count < ovals.length; count++) {
             int x1 = randomNumbers.nextInt(width);
             int y1 = randomNumbers.nextInt(height);
             int x2 = randomNumbers.nextInt(width);
@@ -69,15 +63,13 @@ public class DrawRandomShapesController
 
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
-        for (MyOval oval : ovals)
-        {
+        for (MyOval oval : ovals) {
             oval.draw(gc);
         }
 
     }
     @FXML
-    void drawRectanglesButtonPressed(ActionEvent event)
-    {
+    void drawRectanglesButtonPressed(ActionEvent event) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
         MyRectangle[] rectangles = new MyRectangle[1000];
@@ -85,8 +77,7 @@ public class DrawRandomShapesController
         final int width = (int) canvas.getWidth();
         final int height = (int) canvas.getHeight();
 
-        for (int count = 0; count < rectangles.length; count++)
-        {
+        for (int count = 0; count < rectangles.length; count++) {
             int x1 = randomNumbers.nextInt(width);
             int y1 = randomNumbers.nextInt(height);
             int x2 = randomNumbers.nextInt(width);
@@ -101,14 +92,12 @@ public class DrawRandomShapesController
 
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
-        for (MyRectangle rectangle : rectangles)
-        {
+        for (MyRectangle rectangle : rectangles) {
             rectangle.draw(gc);
         }
     }
     @FXML
-    void drawArcsButtonPressed(ActionEvent event)
-    {
+    void drawArcsButtonPressed(ActionEvent event) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         
         MyArc[] arcs = new MyArc[100];
@@ -116,8 +105,7 @@ public class DrawRandomShapesController
         final int width = (int) canvas.getWidth();
         final int height = (int) canvas.getHeight();
         
-        for (int count = 0; count < arcs.length; count++)
-        {
+        for (int count = 0; count < arcs.length; count++) {
             int x1 = randomNumbers.nextInt(width);
             int y1 = randomNumbers.nextInt(height);
             int x2 = randomNumbers.nextInt(width);
@@ -132,8 +120,7 @@ public class DrawRandomShapesController
         
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         
-        for (MyArc Arc : arcs)
-        {
+        for (MyArc Arc : arcs) {
             Arc.draw(gc);
         }
     }
