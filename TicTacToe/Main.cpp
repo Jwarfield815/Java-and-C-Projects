@@ -1,4 +1,4 @@
-//main program
+// main program
 
 #include <iostream>
 #include <Windows.h>
@@ -6,8 +6,7 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
 	int hold = 0;
 
 	ticTacToe game;

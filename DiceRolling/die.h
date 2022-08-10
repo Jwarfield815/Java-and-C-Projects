@@ -2,8 +2,7 @@
 	Header file for class die
 */
 
-class die
-{
+class die {
 	public:
 		die();
 		// constructor

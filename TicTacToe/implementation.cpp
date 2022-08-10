@@ -12,8 +12,7 @@ int PLAYER2WINS = 0;
 double PLAYER1KDRAT = 0.00;
 double PLAYER2KDRAT = 0.00;
 
-void ticTacToe::play()
-{
+void ticTacToe::play() {
 	bool done = false;
 	char player1 = ' ';
 	char player = ' ';
@@ -22,8 +21,7 @@ void ticTacToe::play()
 	string player1Name = " ";
 	string player2Name = " ";
 
-	if (player1Name == " ")
-	{
+	if (player1Name == " ") {
 		cout << "Enter the name of player 1: " << endl;
 		cin >> player1Name;
 		cout << "Enter the name of player 2: " << endl;
@@ -32,28 +30,23 @@ void ticTacToe::play()
 	
 	cout << player1Name << " enter X/x or O/o" << endl;
 	cin >> player;
-	if (player == 'x' || player == 'X')
-	{
+	if (player == 'x' || player == 'X') {
 		player = 'X';
 		player1 = 'X';
 	}
-	else if (player == 't')
-	{
+	else if (player == 't') {
 		ticTacToe game;
 		game.stats(player1Name, player2Name);
 	}
-	else
-	{
+	else {
 		player = 'O';
 		player1 = 'O';
 	}
 
 	system("CLS");
-		
 	displayBoard();
 
-	while (!done)
-	{
+	while (!done) {
 		done = getXOMove(player, player1, player1Name, player2Name);
 		if (player == 'X')
 			player = 'O';
@@ -62,16 +55,13 @@ void ticTacToe::play()
 	}
 }
 
-void ticTacToe::displayBoard() const
-{
+void ticTacToe::displayBoard() const {
 	cout << "   1    2    3" << endl << endl;
 	
-	for (int row = 0; row < 3; row++)
-	{
+	for (int row = 0; row < 3; row++) {
 		cout << row + 1;
 
-		for (int col = 0; col < 3; col++)
-		{
+		for (int col = 0; col < 3; col++) {
 			cout << setw(3) << board[row][col];
 
 			if (col != 2)
@@ -80,8 +70,7 @@ void ticTacToe::displayBoard() const
 
 		cout << endl;
 
-		if (row != 2)
-		{
+		if (row != 2) {
 			cout << " ____|____|____" << endl
 			<< "     |    |   " << endl;
 		}
@@ -97,33 +86,27 @@ bool ticTacToe::isValidMove(int row, int col) const
 		return false;
 }
 
-bool ticTacToe::getXOMove(char playerSymbol, char firstPlayer, string name1, string name2)
-{
+bool ticTacToe::getXOMove(char playerSymbol, char firstPlayer, string name1, string name2) {
 	int row, col;
 	char again = ' ';
 
-	do
-	{
-		if (playerSymbol == firstPlayer)
-		{
+	do {
+		if (playerSymbol == firstPlayer) {
 			cout << name1 << " enter move, row first, space, then column: ";
 			cin >> row >> col;
 			cout << endl;
 			
-			while (board[row - 1][col - 1] != ' ')
-			{
+			while (board[row - 1][col - 1] != ' ') {
 				cout << "Invalid input, try again. Row first, space, then column: ";
 				cin >> row >> col;
 			}
 		}
-		else
-		{
+		else {
 			cout << name2 << " enter move, row first, space, then column: ";
 			cin >> row >> col;
 			cout << endl;
 
-			while (board[row - 1][col - 1] != ' ')
-			{
+			while (board[row - 1][col - 1] != ' ') {
 				cout << "Invalid input, try again. Row first, space, then column: ";
 				cin >> row >> col;
 			}
@@ -132,28 +115,23 @@ bool ticTacToe::getXOMove(char playerSymbol, char firstPlayer, string name1, str
 
 	row--;
 	col--;
-
 	noOfMoves++;
-
 	board[row][col] = playerSymbol;
 
 	system("CLS");
 	displayBoard();
 
-	//check each play for a winner
+	// check each play for a winner
 	status gStatus = gameStatus();
 
-	if (gStatus == WIN)
-	{
-		if (playerSymbol == firstPlayer)
-		{
+	if (gStatus == WIN) {
+		if (playerSymbol == firstPlayer) {
 			cout << name1 << " wins!" << endl;
 			PLAYER1WINS += 1;
 			
 			ticTacToe::stats(name1, name2);
 		}
-		else
-		{
+		else {
 			cout << name2 << " wins" << endl;
 			PLAYER2WINS += 1;
 			cout << PLAYER2WINS;
@@ -161,8 +139,7 @@ bool ticTacToe::getXOMove(char playerSymbol, char firstPlayer, string name1, str
 		}
 		return true;
 	}
-	else if (gStatus == DRAW)
-	{
+	else if (gStatus == DRAW) {
 		cout << "This game is a draw!" << endl;
 		return true;
 	}
@@ -170,28 +147,24 @@ bool ticTacToe::getXOMove(char playerSymbol, char firstPlayer, string name1, str
 		return false;
 }
 
-status ticTacToe::gameStatus()
-{
-	//Check rows for a win
+status ticTacToe::gameStatus() {
+	// check rows for a win
 	for (int row = 0; row < 3; row++)
 		if (board[row][0] != ' ' && (board[row][0] == board[row][1]) && 
 			(board[row][1] == board[row][2]))
 			return WIN;
-	for (int col = 0; col < 3; col++)
-	{
+	for (int col = 0; col < 3; col++) {
 		if (board[0][col] != ' ' && (board[0][col] == board[1][col]) && 
 			(board[1][col] == board[2][col]))
 			return WIN;
 	}
 
-	//check diagnosis for a win
-	if (board[0][0] != ' ' && (board[0][0] == board[1][1]) && (board[1][1] && board[1][1] == board[2][2]))
-	{
+	// check diagnosis for a win
+	if (board[0][0] != ' ' && (board[0][0] == board[1][1]) && (board[1][1] && board[1][1] == board[2][2])) {
 		return WIN;
 	}
 
-	if (board[2][0] != ' ' && (board[2][0] == board[1][1]) && (board[1][1] == board[0][2]))
-	{
+	if (board[2][0] != ' ' && (board[2][0] == board[1][1]) && (board[1][1] == board[0][2])) {
 		return WIN;
 	}
 
@@ -201,28 +174,22 @@ status ticTacToe::gameStatus()
 	return DRAW;
 }
 
-void ticTacToe::reStart()
-{
-	for (int row = 0; row < 3; row++)
-	{
-		for (int col = 0; col < 3; col++)
-		{
+void ticTacToe::reStart() {
+	for (int row = 0; row < 3; row++) {
+		for (int col = 0; col < 3; col++) {
 			board[row][col] = ' ';
 		}
 	}
 	noOfMoves = 0;
 }
-void ticTacToe::stats(string name1, string name2)
-{
+void ticTacToe::stats(string name1, string name2) {
 	char choice = ' ';
 
 	cout << "Would you like to view stats? y/n" << endl;
 	cin >> choice;
 
-	if (choice == 'y' || choice == 'Y')
-	{
-		if (PLAYER2WINS != 0)
-		{
+	if (choice == 'y' || choice == 'Y') {
+		if (PLAYER2WINS != 0) {
 			PLAYER1KDRAT = PLAYER1WINS / PLAYER2WINS;
 		}
 		else
@@ -236,14 +203,12 @@ void ticTacToe::stats(string name1, string name2)
 			<< "K/D Ratio: " << setw(5) << right << PLAYER1KDRAT << setw(9) << right << PLAYER2KDRAT << endl;
 		cout << "Would you like to play again? ";
 		cin >> choice;
-		if (choice == 'y' || choice == 'Y')
-		{
+		if (choice == 'y' || choice == 'Y') {
 			system("CLS");
 			ticTacToe();
 		}
 	}
-	else
-	{
+	else {
 		cout << "Would you like to play again? ";
 		cin >> choice;
 		if (choice == 'y' || choice == 'Y')
@@ -252,12 +217,9 @@ void ticTacToe::stats(string name1, string name2)
 			exit(0);
 	}
 }
-ticTacToe::ticTacToe()
-{
-	for (int row = 0; row < 3; row++)
-	{
-		for (int col = 0; col < 3; col++)
-		{
+ticTacToe::ticTacToe() {
+	for (int row = 0; row < 3; row++) {
+		for (int col = 0; col < 3; col++) {
 			board[row][col] = ' ';
 		}
 	}
