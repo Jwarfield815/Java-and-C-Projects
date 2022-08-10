@@ -6,10 +6,8 @@
 
 import java.util.Scanner;
 
-public class BinaryToDecimal
-{
-    public static void main(String[] args)
-    {
+public class BinaryToDecimal {
+    public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         
         int bit = 1; // bit positional value
@@ -18,12 +16,11 @@ public class BinaryToDecimal
         // prompt for and read in a binary number
         System.out.print("Enter a binary number: ");
         int binary = 0;
-        if(input.hasNextInt() )
+        if(input.hasNextInt())
             binary = input.nextInt(); // if there is another number
         
         // convert to decimal equivalent
-        while(binary != 0)
-        {
+        while(binary != 0) {
             decimal += binary % 10 * bit;
             binary /= 10;
             bit *=2;
